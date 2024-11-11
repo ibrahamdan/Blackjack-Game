@@ -5,6 +5,11 @@ let cardsEl = document.querySelector("#cards-el")
 let startBtn = document.querySelector("#start-btn")
 let firstRound = true
 
+function getRandomCard() {
+    let card = Math.floor(Math.random() * 10) + 1
+    return card
+}
+
 function displaySum() {
     sumEl.innerHTML = "Sum: " + sum
 }
@@ -45,7 +50,7 @@ function updateMessage() {
 
 function startGame() {
     startBtn.innerHTML = "New Game"
-    cards = [10, 2]
+    cards = [getRandomCard(), getRandomCard()]
     let sum = 0
     let message = ""
     let gotBJ = false
@@ -60,7 +65,7 @@ function startGame() {
 
 function drawCard() {
     if (isAlive) {
-        let newCard = Math.floor(Math.random() * 10) + 1
+        let newCard = getRandomCard()
         cards.push(newCard)
         sum = calculateSum()
         cardsEl.innerHTML = cardsEl.innerHTML + newCard + " "
@@ -69,7 +74,7 @@ function drawCard() {
 
 function buildNewGame() {
     startBtn.innerHTML = "New Game"
-    cards = [10, 2]
+    cards = [getRandomCard(), getRandomCard()]
     sum = 0
     message = ""
     gotBJ = false
