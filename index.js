@@ -5,17 +5,30 @@ import { Card } from './card.js'
 document.getElementById('start-btn').addEventListener('click', startGame);
 document.getElementById('draw-btn').addEventListener('click', drawCard);
 
-
 let suits = ["Spades", "Diamonds", "Clubs", "Hearts"]
 let values = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]
 
-let deck = []
+/*let deck = []
 
 for (let i = 0; i < suits.length; i++) {
     for (let k = 0; k < values.length; k++) {
         const card = new Card(suits[i], values[k])
         deck.push(card)
     }
+}*/
+
+let deck = []
+
+function buildDeck() {
+    let deck = []
+
+    for (let i = 0; i < suits.length; i++) {
+        for (let k = 0; k < values.length; k++) {
+            const card = new Card(suits[i], values[k])
+            deck.push(card)
+        }
+    }
+    return deck
 }
 
 let sum = 0
@@ -33,7 +46,6 @@ function getRandomCard() {
     let cardPos = Math.floor(Math.random() * deck.length) + 1
     let randomCard = deck[cardPos]
     deck.splice(deck.indexOf(randomCard), 1)
-    console.log("generated rand card")
     return randomCard.value
 }
 
@@ -89,6 +101,7 @@ function updateMessage() {
 }
 
 function startGame() {
+    deck = buildDeck()
     startBtn.innerHTML = "New Game"
     cards = [getRandomCard(), getRandomCard()]
     sum = calculateSum()
@@ -109,6 +122,7 @@ function drawCard() {
 }
 
 function buildNewGame() {
+    deck = buildDeck()
     startBtn.innerHTML = "New Game"
     cards = [getRandomCard(), getRandomCard()]
     sum = 0
