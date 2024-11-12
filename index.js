@@ -91,7 +91,6 @@ function updateMessage() {
     else if (sum === 21) {
         message = "wow nigga"
         gotBJ = true
-        isAlive = false
     }
     else {
         message = "fuck off nigga"
@@ -113,7 +112,7 @@ function startGame() {
 }
 
 function drawCard() {
-    if (isAlive) {
+    if (isAlive && !gotBJ) {
         let newCard = getRandomCard()
         cards.push(newCard)
         sum = calculateSum()
@@ -135,4 +134,3 @@ function buildNewGame() {
     sum = calculateSum()
     displayCards()
 }
-
